@@ -1,5 +1,5 @@
 # Shopping Cart
-This project is a simple shooping cart and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple shoping cart and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Requirements
 - **Node.js Version**: `20.5.0`
 
