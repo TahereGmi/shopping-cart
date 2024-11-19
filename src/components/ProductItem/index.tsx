@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { ImageSrc } from "../../Constants";
 import styles from "./ProductItem.module.css";
 
 type Props = {
@@ -8,11 +9,19 @@ type Props = {
   onToggle: () => void;
 };
 
-const ProductItem: React.FC<Props> = ({ title, checked = false, src, onToggle }) => {
+const ProductItem: React.FC<Props> = ({
+  title,
+  checked = false,
+  src,
+  onToggle,
+}) => {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  const handleError = () => setImgSrc(ImageSrc);
   return (
     <div className={styles.item}>
       <div className={styles.image}>
-        <img src={src} alt={title} />
+        <img src={imgSrc || ImageSrc} alt={title} onEnded={handleError} />
       </div>
       <span className={styles.name}>{title}</span>
       <input

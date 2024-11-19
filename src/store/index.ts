@@ -7,6 +7,8 @@ type ShoppingListState = {
   error: string | null;
   fetchItems: () => Promise<void>;
   toggleItem: (id: string) => void;
+  addItem: (title: string) => void;
+  deleteCheckedItems: () => void;
 };
 
 const useStore = create<ShoppingListState>((set) => ({
@@ -32,6 +34,17 @@ const useStore = create<ShoppingListState>((set) => ({
       items: state.items.map((item) =>
         item.id === id ? { ...item, checked: !item.checked } : item
       ),
+    }));
+  },
+
+  addItem: (title: string) => {
+    const newItem: Product = { id: String(Date.now()), title, checked: false };
+    set((state) => ({ items: [...state.items, newItem] }));
+  },
+
+  deleteCheckedItems: () => {
+    set((state) => ({
+      items: state.items.filter((item) => !item.checked),
     }));
   },
 }));

@@ -17,8 +17,6 @@ const ProductList: React.FC = () => {
     fetchItems();
   }, []);
 
-  console.log('products', products);
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
