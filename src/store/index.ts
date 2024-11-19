@@ -1,17 +1,12 @@
 import { create } from "zustand";
-
-// Define the type for a single shopping item
-export type ShoppingItem = {
-  id: number;
-  name: string;
-  checked: boolean;
-};
+import { Product } from "../types/types";
 
 type ShoppingListState = {
-  items: ShoppingItem[];
+  items: Product[];
   isLoading: boolean;
   error: string | null;
   fetchItems: () => Promise<void>;
+  toggleItem: (id: string) => void;
 };
 
 const useStore = create<ShoppingListState>((set) => ({
@@ -25,11 +20,19 @@ const useStore = create<ShoppingListState>((set) => ({
       const response = await fetch(
         "https://interview-assignment-shopping-list.vercel.app/products.json"
       );
-      const data: ShoppingItem[] = await response.json();
-      set({ items: data, isLoading: false });
+      const data = await response.json();
+      const items: Product[] = data.products;
+      set({ items, isLoading: false });
     } catch (error: any) {
       set({ error: error.message, isLoading: false });
     }
+  },
+  toggleItem: (id) => {
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+      ),
+    }));
   },
 }));
 

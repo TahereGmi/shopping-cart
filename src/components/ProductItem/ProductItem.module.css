@@ -1,0 +1,33 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
+  
+  .image {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 5px;
+  }
+
+  .image img {
+    display: block;
+    width: 100%;
+  }
+  
+  .name {
+    flex-grow: 1;
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+  
+  .checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  
